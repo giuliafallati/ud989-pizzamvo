@@ -3,27 +3,27 @@
     <head>
         <meta charset="utf-8">                                                      <!-- das Charset wird angegeben -->
         <title>Udacity Hut</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">        <!--Websiten groesse wird an die des Geraetes angepasst-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">        <!--Websiten-Groesse wird an die des Geraetes angepasst-->
         <link rel="stylesheet" href="css/style.css">                                <!--CSS wird eingebunden-->
     </head>
     <body>
 
     <div class="controls">
-        <button class="add-pizza">Add Pizza</button>                                <!--add pizza button wird erstellt-->
+        <button class="add-pizza">Add Pizza</button>                                <!--add-pizza Button wird erstellt-->
     </div>
 
     <ul class="pizza-list"></ul>                                                    <!--die Liste wird erstellt-->
 
-    <script type="text/template" data-template="pizza">                             <!--ein daten-template namens "pizza" wird erstellt-->
+    <script type="text/template" data-template="pizza">                             <!--ein Daten-Template namens "pizza" wird erstellt-->
         <li class="pizza" data-id="{{id}}">                                         <!--eine li mit der class pizza und einer voruebergehenden id wird erstellt-->
-            {{id}}                                                                  <!--//TODO: platzhalter für neue id aus js? ???-->
+            {{id}}                                                                  <!-- Platzhalter für neue id aus js (wird ersetzt) -->
             <div class="pizza-controls">
-                <a href="#" class="remove-pizza">X</a>                              <!--das grund geruest für den remove button wird erstellt-->
+                <a href="#" class="remove-pizza">X</a>                              <!--das Grundgeruest für den remove-button wird erstellt-->
             </div>
         </li>
     </script>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>         <!--jquery wird aus dem internet eingebunden-->
-    <script src="js/app.js"></script>                                                               <!--das js file wird eingebunden-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>         <!--jQuery wird aus dem Internet eingebunden-->
+    <script src="js/app.js"></script>                                                               <!--das js-file wird eingebunden-->
     </body>
 </html>

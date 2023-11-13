@@ -51,7 +51,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             this.$pizzaList.on('click', '.remove-pizza', function (e) {          //diese function wird auf click aufgerufen, spezifiziert, dass nur die remove-pizza Elemente dazugehören sollen
                 var pizza = $(this).parents('.pizza').data();                   //die parents() methode, ergibt alle ancestors von der class pizza, die data() methode gibt jegliche Daten aus über das ausgewaehlte Element
                 octopus.removePizza(pizza);
-                return false;                                                   //return false macht in diesem fall, dass das ganze programm fertig ist. (also, bis etwas neues geklickt wird)?? //TODO: ueberpruefen
+                return false;                                                   //ueberschreibt die Voreinstellungen des Browsers
             });
 
             this.render();          //das ganze wird gerendert = in die render function weitergeleitet
@@ -63,14 +63,14 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
                 pizzaTemplate = this.pizzaTemplate;
 
             // Clear and render
-            $pizzaList.html('');                                                    //leert alle vorherigen eingaben aus den html-Teil
+            $pizzaList.html('');                                                    //leert alle vorherigen Eingaben aus den html-Teil
             octopus.getVisiblePizzas().forEach(function (pizza) {                    //holt zuerst aus dem octopus alle sichtbaren Pizzas und fuehrt dann für jede die function aus.
                 // Replace template markers with data
-                var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt?? //TODO: ??? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich
+                var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
                 $pizzaList.append(thisTemplate);                                    //die neu eingefuellten Daten werden appended
             });
         }
     };
 
-    octopus.init();     //der octopus wird initialisiert?? //TODO: ???
+    octopus.init();     //der octopus wird initialisiert (geht zum init beim octopus)
 }());
