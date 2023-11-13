@@ -1,22 +1,22 @@
 * {
     -moz-box-sizing: border-box;
-         box-sizing: border-box;
+         box-sizing: border-box;            /*die grundeinstellungen für das verhalten der grösse der website im browser wird festgelegt*/ 
 }
 
 body {
     background: red;
-    margin: 2em;
+    margin: 2em;                            /*der body wird rot gemact und erhält einen rand*/
 }
 
 .controls {
     text-align: center;
-    margin: 0 auto 1em;
+    margin: 0 auto 1em;                     /*die elemente der class controls (buttons) werden genauer definiert (text im center und der rand)*/
 }
 
 .pizza-list {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0;                             /*die elemente der class pizza-list werden genauer definiert (keinen rand, keinen lst style type (keine punkte vor der aufzählung))*/
 }
 
 .pizza {
@@ -26,7 +26,7 @@ body {
     line-height: 50px;
     text-align: center;
     width: 100px;
-    margin: .5em;
+    margin: .5em;                           /*die elemente der class piza (also die pizzen selbst) erhalten eine hintergrundfarbe, einen rahmen, werden rund und der text wird im center erscheinen*/
 }
 
 .remove-pizza {
@@ -34,5 +34,5 @@ body {
     color: #FFF;
     padding: 0.25em;
     text-decoration: none;
-    border-radius: 3px;
+    border-radius: 3px;                     /*die elemente der class remove pizza (also die remove-buttons) erhalten den hintergrund schwarz, den text weiss, einen rahmen und eine leichte rundung*/
 }
