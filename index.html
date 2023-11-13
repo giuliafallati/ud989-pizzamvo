@@ -1,29 +1,29 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8">                                                      <!-- das charset wird angegeben -->
         <title>Udacity Hut</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">        <!--websiten grösse wird an die des gerätes angepasst-->
+        <link rel="stylesheet" href="css/style.css">                                <!--css wird eingebunden-->
     </head>
     <body>
 
     <div class="controls">
-        <button class="add-pizza">Add Pizza</button>
+        <button class="add-pizza">Add Pizza</button>                                <!--add pizza button wird erstellt-->
     </div>
 
-    <ul class="pizza-list"></ul>
+    <ul class="pizza-list"></ul>                                                    <!--die liste wird erstellt-->
 
-    <script type="text/template" data-template="pizza">
-        <li class="pizza" data-id="{{id}}">
+    <script type="text/template" data-template="pizza">                             <!--ein daten-template wird erstellt-->
+        <li class="pizza" data-id="{{id}}">                                         <!--eine li mit der class pizza und einer vorübergehenden id wird erstellt-->
             {{id}}
             <div class="pizza-controls">
-                <a href="#" class="remove-pizza">X</a>
+                <a href="#" class="remove-pizza">X</a>                              <!--das grund gerüst für den remove button wird erstellt-->
             </div>
         </li>
     </script>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>         <!--jquery wird aus dem internet eingebunden-->
+    <script src="js/app.js"></script>                                                               <!--das js file wird eingebunden-->
     </body>
 </html>
