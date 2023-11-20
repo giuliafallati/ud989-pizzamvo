@@ -5,10 +5,20 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         pizzas: []
     };              //die grundlegenden Daten, mit denen die Pizzas erstellt werden
 
-
+    var clickedPizza;
+    var deletedPizza;
+    var thisID;
+    var isPizzaVisible = false;
     var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellung
         addPizza: function () {              //die function für addPizza, also was beim durchfuehren davon passieren soll
-            var thisID = ++data.lastID;
+            if (isPizzaVisible == true) {
+                thisID = data.lastID;
+                isPizzaVisible = false;
+            }
+            else {
+                thisID = ++data.lastID;
+            }
+
 
             data.pizzas.push({
                 id: thisID,
@@ -17,13 +27,15 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             view.render();                  //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
-        removePizza: function (pizza) {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
-            var clickedPizza = data.pizzas[pizza.id - 1];
+        removePizza: function (pizza) {                             //die function für removePizza, also was beim durchfuehren davon passieren soll
+            clickedPizza = data.pizzas[pizza.id - 1];
             clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
+            isPizzaVisible = true;
+            deletedPizza = pizza.id;
             view.render();                                          //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
-        getVisiblePizzas: function () {                                      //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
+        getVisiblePizzas: function () {                                     //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
             var visiblePizzas = data.pizzas.filter(function (pizza) {
                 return pizza.visible;                                       //filtert, welche Pizzas sichtbar sind, ergibt nur die sichbaren Pizzas in der variable
             });
@@ -65,9 +77,9 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             // Clear and render
             $pizzaList.html('');                                                    //leert alle vorherigen Eingaben aus den html-Teil
             octopus.getVisiblePizzas().forEach(function (pizza) {                    //holt zuerst aus dem octopus alle sichtbaren Pizzas und fuehrt dann für jede die function aus.
-                // Replace template markers with data
-                var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
-                $pizzaList.append(thisTemplate);                                    //die neu eingefuellten Daten werden appended
+
+                var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      // alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
+                $pizzaList.append(thisTemplate);                                    //die neu eingefuellten Daten werden appended  
             });
         }
     };
