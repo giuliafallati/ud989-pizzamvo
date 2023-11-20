@@ -6,9 +6,10 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
     };              //die grundlegenden Daten, mit denen die Pizzas erstellt werden
 
     var clickedPizza;
-    var deletedPizza;
+    //var deletedPizza;
     var thisID;
     var isPizzaVisible = false;
+
     var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellung
         addPizza: function () {              //die function für addPizza, also was beim durchfuehren davon passieren soll
             if (isPizzaVisible == true) {
@@ -18,7 +19,6 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             else {
                 thisID = ++data.lastID;
             }
-
 
             data.pizzas.push({
                 id: thisID,
@@ -31,7 +31,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             clickedPizza = data.pizzas[pizza.id - 1];
             clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
             isPizzaVisible = true;
-            deletedPizza = pizza.id;
+            //deletedPizza = pizza.id;
             view.render();                                          //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
