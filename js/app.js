@@ -10,7 +10,16 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         addPizza: function () {              //die function für addPizza, also was beim durchfuehren davon passieren soll
            
             var thisID = ++data.lastID;
+
+            //alle pizzen durchgehen
+            //schauen ob sie visible sind
+            //wenn nicht, dan soll diese ausgegeben werden
+            //diese Ausgabe in einer var speichern
+            //wenn doch, dann ++data.lastID ausgeben
+            //diese Ausgabe in der var speichern
+
             data.pizzas.push({
+                //nicht mehr thisID verwenden sondern neue var von oben
                 id: thisID,
                 visible: true
            });                             //die Daten werden bearbeitet. (id wird um 1 erhoeht, sichtbar gemacht)
@@ -58,7 +67,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
 
             this.render();          //das ganze wird gerendert = in die render function weitergeleitet
         },
-        
+
         render: function () {
             // Cache vars for use in forEach() callback (performance)
             var $pizzaList = this.$pizzaList,
