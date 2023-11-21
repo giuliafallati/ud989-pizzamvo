@@ -7,7 +7,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
 
     var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellun
 
-        hasVisiblePizzaWithId: function (id) {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
+        hasVisiblePizzaWithId:  (id) => {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
             ret = false;                                        //und ob die Pizza visible ist. wenn beides true ist, wird auch ret = true. am Schluss wid dann der boolean von ret returned. 
             data.pizzas.forEach((pizza) => {
                 if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
@@ -37,7 +37,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             view.render();                  //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
-        removePizza: function (pizza) {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
+        removePizza:  (pizza) => {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
 
             var clickedPizza = data.pizzas[pizza.id - 1];
             clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
@@ -85,7 +85,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
 
             // Clear and render
             $pizzaList.html('');                                                    //leert alle vorherigen Eingaben aus den html-Teil
-            octopus.getVisiblePizzas().forEach(function (pizza) {                    //holt zuerst aus dem octopus alle sichtbaren Pizzas und fuehrt dann für jede die function aus.
+            octopus.getVisiblePizzas().forEach((pizza) => {                    //holt zuerst aus dem octopus alle sichtbaren Pizzas und fuehrt dann für jede die function aus.
                 // Replace template markers with data
                 var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
                 $pizzaList.append(thisTemplate);                                    //die neu eingefuellten Daten werden appended
