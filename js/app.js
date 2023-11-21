@@ -44,7 +44,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             view.render();                                          //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
-        getVisiblePizzas: function () {                                      //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
+        getVisiblePizzas:  () => {                                      //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
 
             var visiblePizzas = data.pizzas.filter(function (pizza) {
                 return pizza.visible;                                       //filtert, welche Pizzas sichtbar sind, ergibt nur die sichbaren Pizzas in der variable
