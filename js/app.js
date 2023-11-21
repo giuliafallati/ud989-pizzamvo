@@ -9,17 +9,19 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
 
         hasVisiblePizzaWithId:  (id) => {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
             ret = false;                                        //und ob die Pizza visible ist. wenn beides true ist, wird auch ret = true. am Schluss wid dann der boolean von ret returned. 
-            data.pizzas.forEach((pizza) => {
-                if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
+            //data.pizzas.forEach((pizza) => {
+            for (pizza of data.pizzas) {   
+            if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
                     ret = true;                                 //wenn es false ist, dann heisst das, dass noch eine neue Pizza gemacht werden muss, da keine existiert, die die Kriterien erfüllt.
                 }
-            });
+            //});
+            }
             return ret;
         },
 
         getIdForNextPizza: function () {                //ret (steht für return) ist 1. Geht dann zur function hasVisiblePizzaWithId() und holt von dort true oder false.
             let ret = 1;                                //wenn es false ist, dann get es nicht in die while, sondern returnt ret (also am anfang z.B. 1)
-            while (this.hasVisiblePizzaWithId(ret)) {   //wenn es true ist, geht es hinein, da die kontrollierte Zahl schon existiert, und erhöht ret und schaut dann nochmals.
+            while (this.hasVisiblePizzaWithId(ret)) {   //wenn es true ist, geht es hinein, da die kontrollierte Zahl schon existiert, und erhöht ret und schaut dann nochmals, es macht das so lange, bis es false ist.
                 ret++;
             }
             return ret;
