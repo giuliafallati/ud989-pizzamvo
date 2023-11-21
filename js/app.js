@@ -5,32 +5,32 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         pizzas: []
     };                         //die grundlegenden Daten, mit denen die Pizzas erstellt werden
 
-    var i;
-    var nextNumber;
+    var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellun
 
+        hasVisiblePizzaWithId: function (id) {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
+            ret = false;                                        //und ob die Pizza visible ist. wenn beides true ist, wird auch ret = true. am Schluss wid dann der boolean von ret returned. 
+            data.pizzas.forEach(function (pizza) {
+                if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
+                    ret = true;                                 //wenn es false ist, dann heisst das, dass noch eine neue Pizza gemacht werden muss, da keine existiert, die die Kriterien erfüllt.
+                }
+            });
+            return ret;
+        },
 
-    //var invisiblePizza;
-    var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellung
+        getIdForNextPizza: function () {                //ret (steht für return) ist 1. Geht dann zur function hasVisiblePizzaWithId() und holt von dort true oder false.
+            let ret = 1;                                //wenn es false ist, dann get es nicht in die while, sondern returnt ret (also am anfang z.B. 1)
+            while (this.hasVisiblePizzaWithId(ret)) {   //wenn es true ist, geht es hinein, da die kontrollierte Zahl schon existiert, und erhöht ret und schaut dann nochmals.
+                ret++;
+            }
+            return ret;
+        },
 
         addPizza: function () {              //die function für addPizza, also was beim durchfuehren davon passieren soll
 
-            //var thisID = ++data.lastID;
-
-            function getNextNumber() {
-                i = 1;
-                while (true) {
-                    if (!data.pizzas.includes(i)) { //wieso geht es in diese Schlaufe, obwohl false sein müsste?
-                        nextNumber = i;
-                        break;
-                    }
-                    i += 1;
-                }
-            }
-            getNextNumber();
+            var thisID = this.getIdForNextPizza();          //geht zur getIdForNextPizza() function
 
             data.pizzas.push({
-                //nicht mehr thisID verwenden sondern neue var von oben
-                id: nextNumber,
+                id: thisID,
                 visible: true
             });                             //die Daten werden bearbeitet. (id wird um 1 erhoeht, sichtbar gemacht)
 
