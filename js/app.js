@@ -9,7 +9,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
 
         hasVisiblePizzaWithId: function (id) {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
             ret = false;                                        //und ob die Pizza visible ist. wenn beides true ist, wird auch ret = true. am Schluss wid dann der boolean von ret returned. 
-            data.pizzas.forEach(function (pizza) {
+            data.pizzas.forEach((pizza) => {
                 if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
                     ret = true;                                 //wenn es false ist, dann heisst das, dass noch eine neue Pizza gemacht werden muss, da keine existiert, die die Kriterien erfüllt.
                 }
