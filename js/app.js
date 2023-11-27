@@ -4,7 +4,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         lastID: 0,
         pizzas: []
     };                         //die grundlegenden Daten, mit denen die Pizzas erstellt werden
-    var clickedPizza;
+    //var clickedPizza;
     var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellun
 
         hasVisiblePizzaWithId: (id) => {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
@@ -41,15 +41,36 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
 
         removePizza: (pizza) => {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
 
-            clickedPizza = data.pizzas[pizza.id - 1];
+            //clickedPizza = data.pizzas[pizza.id - 1];
             //clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
-            const indexOfPizzas = data.pizzas.indexOf(clickedPizza);
-            if (indexOfPizzas > -1) {
+            //let indexOfPizzas = data.pizzas.findIndex( element => element.id== pizza.id );
+
+            // Log all Pizzas
+          /*  data.pizzas.findIndex( function( element) {
+                console.log( element);
+                return true;
+            })*/
+
+            let indexOfPizzas = data.pizzas.findIndex( function( element) {
+                let ret= false;
+                if( element.id== pizza.id) {
+                    ret= true;
+                }
+                return ret;
+            })
+
+            //if (indexOfPizzas > -1) {
                 data.pizzas.splice(indexOfPizzas, 1);
-            }
-            else if (indexOfPizzas == -1) {
-                data.pizzas.splice(0, 1);
-            }
+            //}
+            // else {                                
+            //     if (indexOfPizzas < pizza.id -1) {                                
+            //         data.pizzas.splice(pizza.id - 1, 1);
+            //     }
+            //     else {
+            //         data.pizzas.splice(0, 1);
+            //     }
+            // }
+
             view.render();                                          //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
