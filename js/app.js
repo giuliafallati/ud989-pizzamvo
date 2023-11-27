@@ -46,13 +46,13 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             //let indexOfPizzas = data.pizzas.findIndex( element => element.id== pizza.id );
 
             // Log all Pizzas
-          /*  data.pizzas.findIndex( function( element) {
+          /*  data.pizzas.findIndex( function( element) {                               //gibt in der console alle vorhandenen elemente aus, die im Array vorhanden sind (mit id und ob es visible ist)
                 console.log( element);
                 return true;
             })*/
 
-            let indexOfPizzas = data.pizzas.findIndex( function( element) {
-                let ret= false;
+            let indexOfPizzas = data.pizzas.findIndex( function( element) {         //sucht den index, der element.id == pizza.id = true ist. element ist dabei einfach das erste Element, welches im Array vorhanden ist, mitsamt id, visibility etc.
+                let ret= false;                                                                     
                 if( element.id== pizza.id) {
                     ret= true;
                 }
@@ -60,7 +60,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             })
 
             //if (indexOfPizzas > -1) {
-                data.pizzas.splice(indexOfPizzas, 1);
+                data.pizzas.splice(indexOfPizzas, 1);                                   //löscht das element mit dem oben herausgefundenen index, das zweite ist die anzahl der zu löschenden elemente, in diesem Fall nur 1
             //}
             // else {                                
             //     if (indexOfPizzas < pizza.id -1) {                                
@@ -116,7 +116,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             // Clear and render
             $pizzaList.html('');                                                    //leert alle vorherigen Eingaben aus den html-Teil
             octopus.getVisiblePizzas().forEach((pizza) => {                    //holt zuerst aus dem octopus alle sichtbaren Pizzas und fuehrt dann für jede die function aus.
-                // Replace template markers with data
+                // Vorlage mit Daten ersetzen
                 var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
                 $pizzaList.append(thisTemplate);                                    //die neu eingefuellten Daten werden appended
             });
