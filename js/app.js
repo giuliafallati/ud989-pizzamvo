@@ -4,17 +4,17 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         lastID: 0,
         pizzas: []
     };                         //die grundlegenden Daten, mit denen die Pizzas erstellt werden
-
+    var clickedPizza;
     var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellun
 
-        hasVisiblePizzaWithId:  (id) => {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
+        hasVisiblePizzaWithId: (id) => {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
             ret = false;                                        //und ob die Pizza visible ist. wenn beides true ist, wird auch ret = true. am Schluss wid dann der boolean von ret returned. 
             //data.pizzas.forEach((pizza) => {
-            for (pizza of data.pizzas) {   
-            if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
+            for (pizza of data.pizzas) {
+                if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
                     ret = true;                                 //wenn es false ist, dann heisst das, dass noch eine neue Pizza gemacht werden muss, da keine existiert, die die Kriterien erfüllt.
                 }
-            //});
+                //});
             }
             return ret;
         },
@@ -39,14 +39,21 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             view.render();                  //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
-        removePizza:  (pizza) => {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
+        removePizza: (pizza) => {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
 
-            var clickedPizza = data.pizzas[pizza.id - 1];
-            clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
+            clickedPizza = data.pizzas[pizza.id - 1];
+           // clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
+            const indexOfPizzas = data.pizzas.indexOf(clickedPizza);
+            if (indexOfPizzas > -1) {
+                data.pizzas.splice(indexOfPizzas, 1);
+            }
+            else if (indexOfPizzas == -1) {
+                data.pizzas.splice(0, 1);
+            }
             view.render();                                          //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
-        getVisiblePizzas:  () => {                                      //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
+        getVisiblePizzas: () => {                                      //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
 
             var visiblePizzas = data.pizzas.filter(function (pizza) {
                 return pizza.visible;                                       //filtert, welche Pizzas sichtbar sind, ergibt nur die sichbaren Pizzas in der variable
