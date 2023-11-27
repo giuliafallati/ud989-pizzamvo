@@ -42,7 +42,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         removePizza: (pizza) => {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
 
             clickedPizza = data.pizzas[pizza.id - 1];
-            // clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
+            //clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
             const indexOfPizzas = data.pizzas.indexOf(clickedPizza);
             if (indexOfPizzas > -1) {
                 data.pizzas.splice(indexOfPizzas, 1);
