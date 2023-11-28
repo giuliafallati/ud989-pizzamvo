@@ -48,7 +48,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             // Log all Pizzas
           /*  data.pizzas.findIndex( function( element) {                               //gibt in der console alle vorhandenen elemente aus, die im Array vorhanden sind (mit id und ob es visible ist)
                 console.log( element);
-                return true;
+                return true;                                                            //wenn es auf false ist, gibt es alle Inhalte des Arrays aus, wenn es auf true ist nur das erste 
             })*/
 
             let indexOfPizzas = data.pizzas.findIndex( function( element) {         //sucht den index, der element.id == pizza.id = true ist. element ist dabei einfach das erste Element, welches im Array vorhanden ist, mitsamt id, visibility etc.

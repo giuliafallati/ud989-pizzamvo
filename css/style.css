@@ -4,13 +4,19 @@
 }
 
 body {
-    background: red;
+    background: rgb(155, 19, 19);
     margin: 2em;                            /*der body wird rot gemacht und erhaelt einen Rand*/
 }
 
 .controls {
     text-align: center;
     margin: 0 auto 1em;                     /*die Elemente der class controls (buttons) werden genauer definiert (Text im center und der Rand)*/
+}
+
+.add-pizza {
+    background-color: #000;
+    color: #FFF;
+    border-color: #FFF;
 }
 
 .pizza-list {
