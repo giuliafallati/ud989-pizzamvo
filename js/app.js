@@ -4,17 +4,16 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         lastID: 0,
         pizzas: []
     };                         //die grundlegenden Daten, mit denen die Pizzas erstellt werden
-    //var clickedPizza;
+    
     var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellun
 
         hasVisiblePizzaWithId: (id) => {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
             ret = false;                                        //und ob die Pizza visible ist. wenn beides true ist, wird auch ret = true. am Schluss wid dann der boolean von ret returned. 
-            //data.pizzas.forEach((pizza) => {
+            
             for (pizza of data.pizzas) {
                 if ((pizza.id == id) && (pizza.visible)) {      //wenn es true ist, bedeutet das, dass schon eine Pizza mit der id existiert, die auch visible ist.
                     ret = true;                                 //wenn es false ist, dann heisst das, dass noch eine neue Pizza gemacht werden muss, da keine existiert, die die Kriterien erfüllt.
                 }
-                //});
             }
             return ret;
         },
@@ -28,7 +27,6 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         },
 
         addPizza: function () {              //die function für addPizza, also was beim durchfuehren davon passieren soll
-
             var thisID = this.getIdForNextPizza();          //geht zur getIdForNextPizza() function
 
             data.pizzas.push({
@@ -40,42 +38,19 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         },
 
         removePizza: (pizza) => {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
-
-            //clickedPizza = data.pizzas[pizza.id - 1];
-            //clickedPizza.visible = false;                           //die Daten werden bearbeitet. (id wird um 1 verkleinert, die geklickte Pizza wird unsichtbar gemacht)
-            //let indexOfPizzas = data.pizzas.findIndex( element => element.id== pizza.id );
-
-            // Log all Pizzas
-          /*  data.pizzas.findIndex( function( element) {                               //gibt in der console alle vorhandenen elemente aus, die im Array vorhanden sind (mit id und ob es visible ist)
-                console.log( element);
-                return true;                                                            //wenn es auf false ist, gibt es alle Inhalte des Arrays aus, wenn es auf true ist nur das erste 
-            })*/
-
-            let indexOfPizzas = data.pizzas.findIndex( function( element) {         //sucht den index, der element.id == pizza.id = true ist. element ist dabei einfach das erste Element, welches im Array vorhanden ist, mitsamt id, visibility etc.
-                let ret= false;                                                                     
-                if( element.id== pizza.id) {
-                    ret= true;
+            let indexOfPizzas = data.pizzas.findIndex(function (element) {         //sucht den index, der element.id == pizza.id = true ist. element ist immer das aktuelle Array Element, start beim ersten Array Element, mit id, visibility etc.
+                let ret = false;
+                if (element.id == pizza.id) {
+                    ret = true;                                                          //wenn es true ist, wird der index ans splice weitergegeben, wen es false ist, wird die function widerholt, bis es true ist. wenn es false ist, dann geht es zum nächsten Inhalt
                 }
                 return ret;
             })
-
-            //if (indexOfPizzas > -1) {
-                data.pizzas.splice(indexOfPizzas, 1);                                   //löscht das element mit dem oben herausgefundenen index, das zweite ist die anzahl der zu löschenden elemente, in diesem Fall nur 1
-            //}
-            // else {                                
-            //     if (indexOfPizzas < pizza.id -1) {                                
-            //         data.pizzas.splice(pizza.id - 1, 1);
-            //     }
-            //     else {
-            //         data.pizzas.splice(0, 1);
-            //     }
-            // }
+            data.pizzas.splice(indexOfPizzas, 1);                                   //löscht das element mit dem oben herausgefundenen index, das zweite ist die anzahl der zu löschenden elemente, in diesem Fall nur 1
 
             view.render();                                          //die daten werden an das view.render uebertragen, welches diese dann neu darstellt.
         },
 
         getVisiblePizzas: () => {                                      //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
-
             var visiblePizzas = data.pizzas.filter(function (pizza) {
                 return pizza.visible;                                       //filtert, welche Pizzas sichtbar sind, ergibt nur die sichbaren Pizzas in der variable
             });
@@ -95,28 +70,26 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             addPizzaBtn.click(function () {
                 octopus.addPizza();                     //auf click wird eine neue Pizza erstellt
             });
-            // grab elements and html for using in the render function
+
             this.$pizzaList = $('.pizza-list');                                 //das $ in der Variable signalisiert nur, dass es ein jQuery objekt ist, muesste also nicht gemacht werden (ist aber best practice)
             this.pizzaTemplate = $('script[data-template="pizza"]').html();     //holt das data-template pizza aus dem script teil im HTML
-            // Delegated event to listen for removal clicks
+
             this.$pizzaList.on('click', '.remove-pizza', function (e) {          //diese function wird auf click aufgerufen, spezifiziert, dass nur die remove-pizza Elemente dazugehören sollen
                 var pizza = $(this).parents('.pizza').data();                   //die parents() methode, ergibt alle ancestors von der class pizza, die data() methode gibt jegliche Daten aus über das ausgewaehlte Element
                 octopus.removePizza(pizza);
                 return false;                                                   //ueberschreibt die Voreinstellungen des Browsers
             });
-
             this.render();          //das ganze wird gerendert = in die render function weitergeleitet
         },
 
         render: function () {
-            // Cache vars for use in forEach() callback (performance)
+
             var $pizzaList = this.$pizzaList,
                 pizzaTemplate = this.pizzaTemplate;
 
-            // Clear and render
             $pizzaList.html('');                                                    //leert alle vorherigen Eingaben aus den html-Teil
             octopus.getVisiblePizzas().forEach((pizza) => {                    //holt zuerst aus dem octopus alle sichtbaren Pizzas und fuehrt dann für jede die function aus.
-                // Vorlage mit Daten ersetzen
+
                 var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
                 $pizzaList.append(thisTemplate);                                    //die neu eingefuellten Daten werden appended
             });
