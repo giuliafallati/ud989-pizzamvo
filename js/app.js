@@ -1,11 +1,11 @@
 $(function () {      //fuehrt die function aus, nachdem das jquery document geladen wurde
 
-    var data = {
+    const data = {
         lastID: 0,
         pizzas: []
     };                         //die grundlegenden Daten, mit denen die Pizzas erstellt werden
     
-    var octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellun
+    const octopus = {                         //alles was die daten bearbeitung betrifft, also nur die bearbeitung und nicht die darstellun
 
         hasVisiblePizzaWithId: (id) => {                  //id wird von ret geholt ud hat auch den Wert von ret. grundsätzlich ist ret = false. dann wird bei jeder Pizza geschaut, ob die pizza.id der id (also ret) entspricht,
             ret = false;                                        //und ob die Pizza visible ist. wenn beides true ist, wird auch ret = true. am Schluss wid dann der boolean von ret returned. 
@@ -27,7 +27,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         },
 
         addPizza: function () {              //die function für addPizza, also was beim durchfuehren davon passieren soll
-            var thisID = this.getIdForNextPizza();          //geht zur getIdForNextPizza() function
+            const thisID = this.getIdForNextPizza();          //geht zur getIdForNextPizza() function
 
             data.pizzas.push({
                 id: thisID,
@@ -38,7 +38,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         },
 
         removePizza: (pizza) => {                              //die function für removePizza, also was beim durchfuehren davon passieren soll
-            let indexOfPizzas = data.pizzas.findIndex(function (element) {         //sucht den index, der element.id == pizza.id = true ist. element ist immer das aktuelle Array Element, start beim ersten Array Element, mit id, visibility etc.
+            const indexOfPizzas = data.pizzas.findIndex(function (element) {         //sucht den index, der element.id == pizza.id = true ist. element ist immer das aktuelle Array Element, start beim ersten Array Element, mit id, visibility etc.
                 let ret = false;
                 if (element.id == pizza.id) {
                     ret = true;                                                          //wenn es true ist, wird der index ans splice weitergegeben, wen es false ist, wird die function widerholt, bis es true ist. wenn es false ist, dann geht es zum nächsten Inhalt
@@ -51,7 +51,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
         },
 
         getVisiblePizzas: () => {                                      //die function für getVisiblePizzas, also was beim durchfuehren davon passieren soll
-            var visiblePizzas = data.pizzas.filter(function (pizza) {
+            const visiblePizzas = data.pizzas.filter(function (pizza) {
                 return pizza.visible;                                       //filtert, welche Pizzas sichtbar sind, ergibt nur die sichbaren Pizzas in der variable
             });
             return visiblePizzas;                                           //gibt die sichtbaren Pizzas wieder aus / zeigt sie wieder an
@@ -62,11 +62,11 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             view.init();        //zum init vom view 
         }
     };
-    var view = {                                        //alles was die Darstellung betrifft, die Daten dazu wurden vom octopus uebergeben
+    const view = {                                        //alles was die Darstellung betrifft, die Daten dazu wurden vom octopus uebergeben
 
         init: function () {                              //was angezeigt werden soll, nachdem die Berechnungen durchgefuehrt wurden
 
-            var addPizzaBtn = $('.add-pizza');          //$('.add-pizza') bedeutet: getElementsByClass() der . vor add-pizza signalisiert, dass es eine class ist
+            const addPizzaBtn = $('.add-pizza');          //$('.add-pizza') bedeutet: getElementsByClass() der . vor add-pizza signalisiert, dass es eine class ist
             addPizzaBtn.click(function () {
                 octopus.addPizza();                     //auf click wird eine neue Pizza erstellt
             });
@@ -75,7 +75,7 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
             this.pizzaTemplate = $('script[data-template="pizza"]').html();     //holt das data-template pizza aus dem script teil im HTML
 
             this.$pizzaList.on('click', '.remove-pizza', function (e) {          //diese function wird auf click aufgerufen, spezifiziert, dass nur die remove-pizza Elemente dazugehören sollen
-                var pizza = $(this).parents('.pizza').data();                   //die parents() methode, ergibt alle ancestors von der class pizza, die data() methode gibt jegliche Daten aus über das ausgewaehlte Element
+                const pizza = $(this).parents('.pizza').data();                   //die parents() methode, ergibt alle ancestors von der class pizza, die data() methode gibt jegliche Daten aus über das ausgewaehlte Element
                 octopus.removePizza(pizza);
                 return false;                                                   //ueberschreibt die Voreinstellungen des Browsers
             });
@@ -84,13 +84,13 @@ $(function () {      //fuehrt die function aus, nachdem das jquery document gela
 
         render: function () {
 
-            var $pizzaList = this.$pizzaList,
+            const $pizzaList = this.$pizzaList,
                 pizzaTemplate = this.pizzaTemplate;
 
             $pizzaList.html('');                                                    //leert alle vorherigen Eingaben aus den html-Teil
             octopus.getVisiblePizzas().forEach((pizza) => {                    //holt zuerst aus dem octopus alle sichtbaren Pizzas und fuehrt dann für jede die function aus.
 
-                var thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
+                const thisTemplate = pizzaTemplate.replace(/{{id}}/g, pizza.id);      //alle id's werden mit pizza.id ersetzt? /{{id}}/ ist auch im HTML-Teil vorhanden, daher ersetzt es diesen wahrscheinlich, (regular expression)
                 $pizzaList.append(thisTemplate);                                    //die neu eingefuellten Daten werden appended
             });
         }
